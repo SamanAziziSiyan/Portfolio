@@ -1,0 +1,52 @@
+name: saman-portfolio
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/frontend.Dockerfile
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+    environment:
+      PORTFOLIO_API_URL: http://nginx
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-3000}:3000"
+    depends_on:
+      - nginx
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/backend.Dockerfile
+    environment:
+      APP_NAME: "Saman Portfolio API"
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_KEY: ${APP_KEY:?Generate an APP_KEY and set it in .env}
+      APP_URL: http://localhost:${API_PORT:-8080}
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /app/backend/storage/db/portfolio.sqlite
+      CACHE_STORE: database
+      SESSION_DRIVER: database
+      QUEUE_CONNECTION: database
+      LOG_CHANNEL: stderr
+      PORTFOLIO_CONTENT_PATH: /app/packages/content/portfolio.json
+    volumes:
+      - portfolio_db:/app/backend/storage/db
+    command: ["sh", "-c", "touch storage/db/portfolio.sqlite && php artisan package:discover --ansi && php artisan migrate --force && php artisan db:seed --force && chown -R www-data:www-data storage/db && php-fpm"]
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/nginx.Dockerfile
+    ports:
+      - "127.0.0.1:${API_PORT:-8080}:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  portfolio_db:

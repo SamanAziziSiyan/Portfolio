@@ -1,0 +1,538 @@
+{
+  "projects": [
+    {
+      "slug": "blogina",
+      "name": "Blogina",
+      "kind": "Education WordPress theme",
+      "year": "2025",
+      "category": "WordPress",
+      "evidence_type": "Professional work",
+      "visibility": "Commercial theme; source proprietary",
+      "summary": "A commercial WordPress theme for course-focused websites.",
+      "problem": "Education publishers needed a flexible, course-led site experience.",
+      "contribution": "Independently developed the theme from architecture and Figma implementation through WordPress functionality and configuration.",
+      "architecture": "WordPress theme with custom settings, frontend components, and course presentation.",
+      "engineering_details": "The product page is public. The original commercial source belongs to its rights holders and is not offered as open source.",
+      "repository_url": null,
+      "secondary_url": null,
+      "live_url": "https://www.rtl-theme.com/blogina-wordpress-theme/",
+      "image_url": "/work/blogina.png",
+      "image_alt": "Blogina education theme product preview from RTL Theme",
+      "featured": true,
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "Elementor"
+      ],
+      "evidence": [
+        {
+          "label": "View product",
+          "url": "https://www.rtl-theme.com/blogina-wordpress-theme/",
+          "type": "Live product"
+        }
+      ]
+    },
+    {
+      "slug": "serione",
+      "name": "Serione",
+      "kind": "Corporate WordPress theme",
+      "year": "2025",
+      "category": "WordPress",
+      "evidence_type": "Professional work",
+      "visibility": "Commercial theme; source proprietary",
+      "summary": "A corporate theme with configurable content, commerce, and account experiences.",
+      "problem": "Business sites needed flexible project and product presentation within WordPress.",
+      "contribution": "Independently developed the theme architecture, frontend, settings, Elementor and WooCommerce functionality, and account flows.",
+      "architecture": "WordPress theme with custom project content, filtering, Elementor widgets, WooCommerce integration, and settings.",
+      "engineering_details": "The public product page shows the released theme. Original theme code is commercial and not published here.",
+      "repository_url": null,
+      "secondary_url": null,
+      "live_url": "https://www.rtl-theme.com/serione-wordpress-theme/",
+      "image_url": "/work/serione.jpg",
+      "image_alt": "Serione corporate theme product preview from RTL Theme",
+      "featured": true,
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "Elementor",
+        "WooCommerce"
+      ],
+      "evidence": [
+        {
+          "label": "View product",
+          "url": "https://www.rtl-theme.com/serione-wordpress-theme/",
+          "type": "Live product"
+        }
+      ]
+    },
+    {
+      "slug": "clickchin-builder",
+      "name": "ClickChin / component builder",
+      "kind": "Platform subsystem",
+      "year": "2024",
+      "category": "Full stack",
+      "evidence_type": "Public source",
+      "visibility": "Sanitized public subsystem",
+      "summary": "A Laravel API and Next.js editor for composing, previewing, and persisting landing pages.",
+      "problem": "Landing layouts needed a reusable content model and an editing surface rather than one-off pages.",
+      "contribution": "Implemented the Laravel landing and component API, with shared frontend and development tooling work. The full generation and deployment platform lives elsewhere.",
+      "architecture": "Laravel JSON endpoints persist landing configuration; a Next.js editor assembles component state and previews it in React.",
+      "engineering_details": "The public pair demonstrates an editor-to-API boundary, JSON persistence, authentication modules, and local Docker tooling. It does not include the complete exporter or hosted deployment system.",
+      "repository_url": "https://github.com/SamanAziziSiyan/clickchin-landing-backend",
+      "secondary_url": "https://github.com/SamanAziziSiyan/clickchin-landing-frontend",
+      "featured": true,
+      "technologies": [
+        "Laravel",
+        "PHP",
+        "Next.js",
+        "React",
+        "JavaScript",
+        "Docker"
+      ],
+      "evidence": [
+        {
+          "label": "Laravel source",
+          "url": "https://github.com/SamanAziziSiyan/clickchin-landing-backend",
+          "type": "Public source"
+        },
+        {
+          "label": "Next.js source",
+          "url": "https://github.com/SamanAziziSiyan/clickchin-landing-frontend",
+          "type": "Public source"
+        }
+      ],
+      "live_url": null,
+      "image_url": null,
+      "image_alt": null
+    },
+    {
+      "slug": "amiramir-jewelry",
+      "name": "AMIRAMIR Jewelry",
+      "kind": "Custom WordPress theme",
+      "year": "2023–24",
+      "category": "WordPress",
+      "evidence_type": "Public source",
+      "visibility": "Sanitized public theme",
+      "summary": "A custom jewelry theme with a content model, account interactions, catalog views, and appointments.",
+      "problem": "A content-led jewelry site needed tailored product storytelling and customer interaction beyond a stock theme.",
+      "contribution": "Led theme architecture and substantial implementation across content modeling, settings, AJAX account flows, wishlist, and frontend behavior; collaborated with Solaiman Naderi.",
+      "architecture": "WordPress custom post type and taxonomies, metadata and settings, PHP templates, AJAX endpoints, and an appointment table.",
+      "engineering_details": "The public export has security hardening, neutral media, independent history, behavior checks, and a safe local Compose example. It is theme source, not a complete site.",
+      "repository_url": "https://github.com/SamanAziziSiyan/amiramir-jewelry-theme",
+      "featured": false,
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "JavaScript",
+        "Tailwind CSS",
+        "MySQL",
+        "Docker"
+      ],
+      "evidence": [
+        {
+          "label": "Reviewed theme source",
+          "url": "https://github.com/SamanAziziSiyan/amiramir-jewelry-theme",
+          "type": "Public source"
+        }
+      ],
+      "live_url": null,
+      "image_url": null,
+      "image_alt": null
+    },
+    {
+      "slug": "anar360-integration",
+      "name": "Anar360 integration",
+      "kind": "Commerce integration",
+      "year": "2024",
+      "category": "Integration",
+      "evidence_type": "Public source",
+      "visibility": "Sanitized public plugin",
+      "summary": "Catalog mapping from an external service into WooCommerce products and categories.",
+      "problem": "Commerce data from a separate catalog had to become maintainable WordPress product records.",
+      "contribution": "Built substantial parts of the API retrieval, category and attribute mapping, and WordPress/WooCommerce product update workflow with collaborators.",
+      "architecture": "A WordPress plugin uses service API responses, admin settings, WooCommerce objects, and product metadata to map catalog entities.",
+      "engineering_details": "The reviewed public export scopes the integration and admin authorization. Full historical production sync behavior and product variation support are not claimed.",
+      "repository_url": "https://github.com/SamanAziziSiyan/anar360-woocommerce-integration",
+      "featured": false,
+      "technologies": [
+        "WordPress",
+        "WooCommerce",
+        "PHP",
+        "REST APIs"
+      ],
+      "evidence": [
+        {
+          "label": "Integration source",
+          "url": "https://github.com/SamanAziziSiyan/anar360-woocommerce-integration",
+          "type": "Public source"
+        }
+      ],
+      "live_url": null,
+      "image_url": null,
+      "image_alt": null
+    },
+    {
+      "slug": "panjere-studio-theme",
+      "name": "Panjere Studio",
+      "kind": "Editorial WordPress theme",
+      "year": "2023",
+      "category": "WordPress",
+      "evidence_type": "Public source",
+      "visibility": "Sanitized public theme",
+      "summary": "A studio theme for project, editorial, and contact content with reusable WordPress templates.",
+      "problem": "The studio needed a flexible publishing surface for work and editorial content.",
+      "contribution": "Implemented the majority of the audited theme repository, including PHP templates, project content structure, and contact functionality, with design and collaborator credit kept separate.",
+      "architecture": "Custom post type and taxonomy, template parts, meta boxes, contact handling, and optional Polylang integration.",
+      "engineering_details": "The public repository contains isolated theme source. The live site's Laboratory metrics/API implementation was not established by this theme export.",
+      "repository_url": "https://github.com/SamanAziziSiyan/panjere-studio-theme",
+      "featured": false,
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "JavaScript",
+        "Polylang"
+      ],
+      "evidence": [
+        {
+          "label": "Theme source",
+          "url": "https://github.com/SamanAziziSiyan/panjere-studio-theme",
+          "type": "Public source"
+        }
+      ],
+      "live_url": null,
+      "image_url": null,
+      "image_alt": null
+    },
+    {
+      "slug": "tebseo-theme",
+      "name": "TEBSEO",
+      "kind": "Marketing WordPress theme",
+      "year": "2023–24",
+      "category": "WordPress",
+      "evidence_type": "Public source",
+      "visibility": "Sanitized public theme",
+      "summary": "A custom marketing theme with responsive sections and a contact request workflow.",
+      "problem": "A service site needed a cohesive marketing frontend and a manageable lead workflow.",
+      "contribution": "Principal contributor to the available WordPress history; developed the theme and local development tooling alongside collaborators.",
+      "architecture": "WordPress PHP templates and hooks, Tailwind frontend, AJAX contact handler, and an administrator request view.",
+      "engineering_details": "The public export removes original configuration and client media, hardens the contact flow, and documents live-runtime limits.",
+      "repository_url": "https://github.com/SamanAziziSiyan/tebseo",
+      "featured": false,
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "Tailwind CSS",
+        "JavaScript",
+        "Docker"
+      ],
+      "evidence": [
+        {
+          "label": "Theme source",
+          "url": "https://github.com/SamanAziziSiyan/tebseo",
+          "type": "Public source"
+        }
+      ],
+      "live_url": null,
+      "image_url": null,
+      "image_alt": null
+    },
+    {
+      "slug": "panjere-mini-cli",
+      "name": "Panjere miniCli",
+      "kind": "Developer tool",
+      "year": "2023",
+      "category": "Tooling",
+      "evidence_type": "Public source",
+      "visibility": "Sanitized public CLI",
+      "summary": "A PHP command-line tool for WordPress setup and code-generation routines.",
+      "problem": "Repeated theme setup and custom content boilerplate slowed project starts.",
+      "contribution": "Implemented folder, Git, and WordPress service routines and custom post type/taxonomy generation in a collaborative CLI.",
+      "architecture": "Composer-based PHP commands invoke focused services for filesystem work, template cloning, and generated WordPress code.",
+      "engineering_details": "The public version documents command limits and tests the supported routines. A generic Git initialization command is not claimed.",
+      "repository_url": "https://github.com/SamanAziziSiyan/panjere-mini-cli",
+      "featured": false,
+      "technologies": [
+        "PHP",
+        "Composer",
+        "CLI",
+        "WordPress"
+      ],
+      "evidence": [
+        {
+          "label": "CLI source",
+          "url": "https://github.com/SamanAziziSiyan/panjere-mini-cli",
+          "type": "Public source"
+        }
+      ],
+      "live_url": null,
+      "image_url": null,
+      "image_alt": null
+    },
+    {
+      "slug": "igame-pwa",
+      "name": "iGame PWA",
+      "kind": "Customer-facing application",
+      "year": "2024",
+      "category": "Frontend",
+      "evidence_type": "Historical project",
+      "visibility": "Public historical repository; rights review open",
+      "summary": "A Next.js client that coordinates customer, product, order, and wallet flows across two API boundaries.",
+      "problem": "The customer experience needed a responsive application over existing WordPress and another service API.",
+      "contribution": "Substantial work in the public Next.js/TypeScript client. The repository does not establish authorship of the backend services.",
+      "architecture": "Next.js app routes, feature components, Zustand state, and separate Axios clients for WordPress and another API host.",
+      "engineering_details": "A near-identical IranCP variant exists; it is treated as one engineering story. Existing client assets/configuration have unresolved publication and presentation issues.",
+      "repository_url": "https://github.com/SamanAziziSiyan/IGame-PWA",
+      "featured": false,
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "PWA",
+        "Zustand"
+      ],
+      "evidence": [
+        {
+          "label": "Historical client source",
+          "url": "https://github.com/SamanAziziSiyan/IGame-PWA",
+          "type": "Historical project"
+        }
+      ],
+      "live_url": null,
+      "image_url": null,
+      "image_alt": null
+    },
+    {
+      "slug": "amlak-arad-panel",
+      "name": "Amlak Arad panel",
+      "kind": "Administrative interface",
+      "year": "2023 source",
+      "category": "Frontend",
+      "evidence_type": "Historical project",
+      "visibility": "Public historical repository; backend security review open",
+      "summary": "A React administrative interface connected to a separate WordPress API plugin.",
+      "problem": "Property administration needed forms and API-backed management views.",
+      "contribution": "Shared frontend implementation in the available React repository. Exact contract placement and the broader Next.js work are not established by this source.",
+      "architecture": "React UI modules, form validation, routing, and an Axios service boundary to a WordPress API.",
+      "engineering_details": "The related historical WordPress API needs authorization remediation before it can be endorsed as a current source example.",
+      "repository_url": "https://github.com/SamanAziziSiyan/amlakarad-panel",
+      "featured": false,
+      "technologies": [
+        "React",
+        "JavaScript",
+        "WordPress",
+        "REST APIs"
+      ],
+      "evidence": [
+        {
+          "label": "Historical panel source",
+          "url": "https://github.com/SamanAziziSiyan/amlakarad-panel",
+          "type": "Historical project"
+        }
+      ],
+      "live_url": null,
+      "image_url": null,
+      "image_alt": null
+    }
+  ],
+  "experiences": [
+    {
+      "company": "Webilia",
+      "role": "Full Stack Developer",
+      "period": "Aug 2024 – present",
+      "start_date": "2024-08-01",
+      "end_date": null,
+      "summary": "Building and maintaining Listdom, a commercial WordPress directory platform and its add-ons, themes, integrations, and developer tools.",
+      "highlights": [
+        "Owner-reported 600+ PRs across the ecosystem; approximately 400 in core and 200+ in related work.",
+        "Designed and implemented Template Builder, Demo Importer and Settings Panel packages, and Placora theme.",
+        "Built the Divi 5 integration; developed and maintained 30+ add-ons.",
+        "Reviews, production debugging, technical decisions, and UI/UX coordination. Payment work built on the manager’s core architecture."
+      ],
+      "technologies": [
+        "PHP",
+        "WordPress",
+        "TypeScript",
+        "Composer"
+      ],
+      "evidence_type": "Professional work",
+      "link": "https://listdom.net"
+    },
+    {
+      "company": "RTL Theme",
+      "role": "WordPress Developer · contract",
+      "period": "Jun 2024 – present",
+      "start_date": "2024-06-01",
+      "end_date": null,
+      "summary": "Independently developed two commercial themes: Blogina for education sites and Serione for corporate sites.",
+      "highlights": [
+        "Blogina: Figma to WordPress production, theme architecture, settings, and course-focused views.",
+        "Serione: settings infrastructure, Elementor and WooCommerce functionality, project content, AJAX filtering, and account areas."
+      ],
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "Elementor",
+        "WooCommerce"
+      ],
+      "evidence_type": "Professional work",
+      "link": "https://www.rtl-theme.com/blogina-wordpress-theme/"
+    },
+    {
+      "company": "Dalga",
+      "role": "WordPress Developer · freelance",
+      "period": "Aug 2024 – Jan 2025",
+      "start_date": "2024-08-01",
+      "end_date": "2025-01-31",
+      "summary": "Built a custom PayPro Global gateway plugin for a WordPress commerce and subscription workflow.",
+      "highlights": [
+        "Integrated the gateway with WooCommerce Subscriptions and its payment flow.",
+        "Handled the WordPress, WooCommerce, subscription, and payment-provider boundaries."
+      ],
+      "technologies": [
+        "WordPress",
+        "WooCommerce",
+        "PHP"
+      ],
+      "evidence_type": "Professional work",
+      "link": null
+    },
+    {
+      "company": "iGame",
+      "role": "Full Stack Developer",
+      "period": "Mar 2024 – Jan 2025",
+      "start_date": "2024-03-01",
+      "end_date": "2025-01-31",
+      "summary": "Worked on the customer website and user panel, connecting a Next.js frontend to WordPress and another service API.",
+      "highlights": [
+        "Built customer-facing product, order, and account flows in Next.js.",
+        "Worked inside existing WordPress code and maintained a custom theme; the public PWA repositories show the frontend boundary."
+      ],
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "WordPress"
+      ],
+      "evidence_type": "Professional work",
+      "link": "https://github.com/SamanAziziSiyan/IGame-PWA"
+    },
+    {
+      "company": "Panjere Studio",
+      "role": "Technical Team Lead",
+      "period": "Nov 2023 – Jun 2024",
+      "start_date": "2023-11-01",
+      "end_date": "2024-06-30",
+      "summary": "Moved from hands-on product development into technical leadership while continuing to contribute to delivery.",
+      "highlights": [
+        "Led 5+ developers through planning, code review, architecture decisions, mentoring, and debugging.",
+        "Led continued ClickChin development after its initial hands-on phase and contributed to TechTeamBuilder.",
+        "Participated in technical and HR interviews for developer roles."
+      ],
+      "technologies": [
+        "Laravel",
+        "Next.js",
+        "Docker"
+      ],
+      "evidence_type": "Professional work",
+      "link": "https://github.com/SamanAziziSiyan/clickchin-landing-backend"
+    },
+    {
+      "company": "Panjere Studio",
+      "role": "Full Stack Web Developer",
+      "period": "Oct 2023 – Nov 2023",
+      "start_date": "2023-10-01",
+      "end_date": "2023-11-30",
+      "summary": "Developed Panjere products across Laravel and Next.js applications, WordPress sites, commerce integrations, and PHP tooling.",
+      "highlights": [
+        "Built initial ClickChin component and template flows, including JSON configuration and generated output paths.",
+        "Developed the Studio theme, miniCli, and Anar360 WooCommerce integration.",
+        "Worked on Laboratory and deployment workflows; broader platform claims remain bounded by the audited source."
+      ],
+      "technologies": [
+        "Laravel",
+        "Next.js",
+        "WordPress",
+        "PHP"
+      ],
+      "evidence_type": "Professional work",
+      "link": "https://github.com/SamanAziziSiyan/clickchin-landing-backend"
+    },
+    {
+      "company": "AKAF System",
+      "role": "Full Stack Web Developer · contract",
+      "period": "Oct 2022 – Jan 2024",
+      "start_date": "2022-10-01",
+      "end_date": "2024-01-31",
+      "summary": "Delivered and maintained business WordPress sites for international clients, often adapting commercial themes to specific needs.",
+      "highlights": [
+        "Owner reports 10+ sites; work covered frontend, backend, database, integrations, and deployment.",
+        "Developed AKAF and AKAF Business sites; no public repository is assigned to this role."
+      ],
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "JavaScript"
+      ],
+      "evidence_type": "Professional work",
+      "link": null
+    },
+    {
+      "company": "Radiscar",
+      "role": "Full Stack Web Developer",
+      "period": "Feb 2022 – Sep 2023",
+      "start_date": "2022-02-01",
+      "end_date": "2023-09-30",
+      "summary": "Customized an existing WooCommerce automotive store, then designed and coded much of a replacement theme before leaving.",
+      "highlights": [
+        "Built product discovery and filtering and redesigned storefront sections.",
+        "Worked with sales and marketing as the primary developer. No unverified launch or performance figure is claimed."
+      ],
+      "technologies": [
+        "WordPress",
+        "WooCommerce",
+        "PHP"
+      ],
+      "evidence_type": "Professional work",
+      "link": "https://github.com/SamanAziziSiyan/radiscar"
+    },
+    {
+      "company": "Independent work",
+      "role": "Freelance Full Stack Web Developer",
+      "period": "Feb 2016 – Jun 2021 · overlapping",
+      "start_date": "2016-02-01",
+      "end_date": "2021-06-30",
+      "summary": "Delivered independent web projects from requirements through deployment and maintenance, alongside other periods of work.",
+      "highlights": [
+        "Owner reports 20+ projects spanning WordPress and custom PHP/Laravel applications.",
+        "Managed hosting, domains, server setup, and client maintenance."
+      ],
+      "technologies": [
+        "PHP",
+        "WordPress",
+        "Laravel",
+        "JavaScript"
+      ],
+      "evidence_type": "Professional work",
+      "link": null
+    }
+  ],
+  "products": [
+    {
+      "slug": "listdom",
+      "name": "Listdom",
+      "label": "Commercial directory platform",
+      "summary": "A public WordPress directory product. Saman contributes as part of Webilia's engineering team across core features, add-ons, integrations, and tooling.",
+      "url": "https://listdom.net",
+      "relationship": "Professional contribution · source proprietary",
+      "evidence_type": "Live product"
+    },
+    {
+      "slug": "webilia",
+      "name": "Webilia",
+      "label": "Company and product ecosystem",
+      "summary": "The public company context for Saman's current product work. It is not presented as a site he built alone.",
+      "url": "https://webilia.com",
+      "relationship": "Employer · source proprietary",
+      "evidence_type": "Live product"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+**/.git
+**/node_modules
+**/vendor
+**/.next
+**/.env
+**/.env.local
+**/*.sqlite
+backend/storage/logs
+backend/bootstrap/cache/*.php
+backend/storage/framework/cache
+tmp
