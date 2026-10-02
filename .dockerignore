@@ -2,9 +2,13 @@
 **/node_modules
 **/vendor
 **/.next
-**/.env
-**/.env.local
+.env*
+**/.env*
 **/*.sqlite
+.idea
+.vscode
+**/*.swp
+**/*.swo
 backend/storage/logs
 backend/bootstrap/cache/*.php
 backend/storage/framework/cache

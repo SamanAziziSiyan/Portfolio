@@ -82,10 +82,12 @@ Never commit `.env`, contact data, credentials or production keys. Root and appl
 
 ## Deployment
 
-Compose is a reproducible local stack, not a claim of an existing public deployment. For production, provide an HTTPS reverse proxy, set `NEXT_PUBLIC_SITE_URL` to the deployed origin at build and runtime, set a unique `APP_KEY`, make the SQLite volume durable and backed up, and restrict operator access to submissions. The provided Nginx service serves the API; the Next.js service runs separately. SQLite is intentionally suited to a single-instance, read-heavy portfolio. For multiple API replicas or materially higher write volume, migrate to PostgreSQL before scaling. See [deployment notes](infrastructure/README.md).
+`main` is the intended production branch of [SamanAziziSiyan/portfolio](https://github.com/SamanAziziSiyan/portfolio). GitHub Actions validates both stacks and builds production images on each push to `main`. Until a server and domain are configured, it reports deployment as pending. `docker-compose.prod.yml` separates the production stack from the local Compose file; host Nginx terminates HTTPS and forwards traffic to loopback-only Next.js and API ports. The production SQLite database persists in its own named volume. See [server setup, required GitHub secrets, health checks, and rollback](docs/deployment.md).
+
+SQLite is intentionally suited to a single-instance, read-heavy portfolio. For multiple API replicas or materially higher write volume, migrate to PostgreSQL before scaling.
 
 ## Content and rights
 
 The [content audit](docs/content-audit.md) records the current owner-published chronology, inspected evidence, unresolved contradictions and editorial exclusions. Public repositories are linked to their own scope notes. Proprietary employer source is not copied here. Blogina and Serione use public product-preview images from RTL Theme; check rights before deploying this local site. The downloadable CV is generated from the reviewed snapshot by `scripts/generate_cv.py` and stored at `frontend/public/Saman-Azizi-Siyan-CV.pdf`.
 
-This repository is a local build. It has not been published or deployed by this task.
+Publishing the source to GitHub does not by itself deploy the site; the production server and HTTPS domain still need to be provisioned.

@@ -1,0 +1,77 @@
+name: saman-portfolio-production
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/frontend.Dockerfile
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:?Set NEXT_PUBLIC_SITE_URL in .env.production}
+    environment:
+      NODE_ENV: production
+      PORTFOLIO_API_URL: http://nginx
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:?Set NEXT_PUBLIC_SITE_URL in .env.production}
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-3000}:3000"
+    depends_on:
+      nginx:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r => { if (!r.ok) process.exit(1) }).catch(() => process.exit(1))"]
+      interval: 15s
+      timeout: 8s
+      retries: 8
+      start_period: 20s
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/backend.Dockerfile
+    environment:
+      APP_NAME: "Saman Portfolio API"
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_KEY: ${APP_KEY:?Set APP_KEY in .env.production}
+      APP_URL: ${NEXT_PUBLIC_SITE_URL:?Set NEXT_PUBLIC_SITE_URL in .env.production}
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /app/backend/storage/db/portfolio.sqlite
+      CACHE_STORE: database
+      SESSION_DRIVER: database
+      QUEUE_CONNECTION: database
+      LOG_CHANNEL: stderr
+      PORTFOLIO_CONTENT_PATH: /app/packages/content/portfolio.json
+    volumes:
+      - portfolio_db:/app/backend/storage/db
+    command:
+      - sh
+      - -ec
+      - |
+        touch storage/db/portfolio.sqlite
+        php artisan package:discover --ansi
+        php artisan config:cache
+        php artisan view:cache
+        php artisan migrate --force
+        php artisan db:seed --force
+        chown -R www-data:www-data storage/db
+        exec php-fpm
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/nginx.Dockerfile
+    ports:
+      - "127.0.0.1:${API_PORT:-8080}:80"
+    depends_on:
+      - api
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/up"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  portfolio_db:

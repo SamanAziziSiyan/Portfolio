@@ -1,0 +1,75 @@
+name: Production pipeline
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-production
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    uses: ./.github/workflows/ci.yml
+
+  image-build:
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build production images
+        run: |
+          docker build --file infrastructure/docker/frontend.Dockerfile --build-arg NEXT_PUBLIC_SITE_URL=https://example.com --tag portfolio-frontend:ci .
+          docker build --file infrastructure/docker/backend.Dockerfile --tag portfolio-api:ci .
+          docker build --file infrastructure/docker/nginx.Dockerfile --tag portfolio-api-nginx:ci .
+
+  deployment-pending:
+    needs: image-build
+    if: vars.DEPLOY_ENABLED != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report server setup still required
+        run: |
+          echo '::notice title=Deployment pending::CI and production image builds passed. Set up the server, SSH secrets, and DEPLOY_ENABLED=true to activate deployment.'
+          echo 'Deployment pending: no production server has been configured. CI and image builds passed; this run did not deploy.' >> "$GITHUB_STEP_SUMMARY"
+
+  deploy:
+    needs: image-build
+    if: vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify deployment secrets
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          for name in DEPLOY_HOST DEPLOY_USER DEPLOY_SSH_KEY DEPLOY_KNOWN_HOSTS; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is required when DEPLOY_ENABLED=true"
+              exit 1
+            fi
+          done
+      - name: Deploy verified commit over SSH
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_PORT: ${{ vars.DEPLOY_PORT || '22' }}
+        run: |
+          umask 077
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$RUNNER_TEMP/portfolio_deploy_key"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$RUNNER_TEMP/portfolio_known_hosts"
+          ssh -i "$RUNNER_TEMP/portfolio_deploy_key" \
+            -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$RUNNER_TEMP/portfolio_known_hosts" \
+            -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" \
+            bash -s -- "$GITHUB_SHA" < infrastructure/deploy/deploy.sh
