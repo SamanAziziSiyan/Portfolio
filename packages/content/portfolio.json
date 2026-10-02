@@ -341,6 +341,9 @@
       "period": "Aug 2024 – present",
       "start_date": "2024-08-01",
       "end_date": null,
+      "location": "Greater Vancouver, Canada",
+      "employment_type": "Full-time",
+      "workplace_type": "Remote",
       "summary": "Building and maintaining Listdom, a commercial WordPress directory platform and its add-ons, themes, integrations, and developer tools.",
       "highlights": [
         "Owner-reported 600+ PRs across the ecosystem; approximately 400 in core and 200+ in related work.",
@@ -363,6 +366,9 @@
       "period": "Jun 2024 – present",
       "start_date": "2024-06-01",
       "end_date": null,
+      "location": "Shahr-e Kord, Iran",
+      "employment_type": "Contract",
+      "workplace_type": "Remote",
       "summary": "Independently developed two commercial themes: Blogina for education sites and Serione for corporate sites.",
       "highlights": [
         "Blogina: Figma to WordPress production, theme architecture, settings, and course-focused views.",
@@ -383,6 +389,9 @@
       "period": "Aug 2024 – Jan 2025",
       "start_date": "2024-08-01",
       "end_date": "2025-01-31",
+      "location": "Dubai, UAE",
+      "employment_type": "Freelance",
+      "workplace_type": "Remote",
       "summary": "Built a custom PayPro Global gateway plugin for a WordPress commerce and subscription workflow.",
       "highlights": [
         "Integrated the gateway with WooCommerce Subscriptions and its payment flow.",
@@ -402,6 +411,9 @@
       "period": "Mar 2024 – Jan 2025",
       "start_date": "2024-03-01",
       "end_date": "2025-01-31",
+      "location": "Shiraz, Iran",
+      "employment_type": "Full-time",
+      "workplace_type": "Remote",
       "summary": "Worked on the customer website and user panel, connecting a Next.js frontend to WordPress and another service API.",
       "highlights": [
         "Built customer-facing product, order, and account flows in Next.js.",
@@ -421,6 +433,9 @@
       "period": "Nov 2023 – Jun 2024",
       "start_date": "2023-11-01",
       "end_date": "2024-06-30",
+      "location": "Iran",
+      "employment_type": "Full-time",
+      "workplace_type": "Remote",
       "summary": "Moved from hands-on product development into technical leadership while continuing to contribute to delivery.",
       "highlights": [
         "Led 5+ developers through planning, code review, architecture decisions, mentoring, and debugging.",
@@ -441,6 +456,9 @@
       "period": "Oct 2023 – Nov 2023",
       "start_date": "2023-10-01",
       "end_date": "2023-11-30",
+      "location": "Iran",
+      "employment_type": "Full-time",
+      "workplace_type": "Remote",
       "summary": "Developed Panjere products across Laravel and Next.js applications, WordPress sites, commerce integrations, and PHP tooling.",
       "highlights": [
         "Built initial ClickChin component and template flows, including JSON configuration and generated output paths.",
@@ -462,6 +480,9 @@
       "period": "Oct 2022 – Jan 2024",
       "start_date": "2022-10-01",
       "end_date": "2024-01-31",
+      "location": "Gorgan, Iran",
+      "employment_type": "Contract",
+      "workplace_type": "Remote",
       "summary": "Delivered and maintained business WordPress sites for international clients, often adapting commercial themes to specific needs.",
       "highlights": [
         "Owner reports 10+ sites; work covered frontend, backend, database, integrations, and deployment.",
@@ -481,6 +502,9 @@
       "period": "Feb 2022 – Sep 2023",
       "start_date": "2022-02-01",
       "end_date": "2023-09-30",
+      "location": "Tehran Province, Iran",
+      "employment_type": "Full-time",
+      "workplace_type": "Remote",
       "summary": "Customized an existing WooCommerce automotive store, then designed and coded much of a replacement theme before leaving.",
       "highlights": [
         "Built product discovery and filtering and redesigned storefront sections.",
@@ -500,6 +524,9 @@
       "period": "Feb 2016 – Jun 2021 · overlapping",
       "start_date": "2016-02-01",
       "end_date": "2021-06-30",
+      "location": "Iran",
+      "employment_type": "Freelance",
+      "workplace_type": "Hybrid",
       "summary": "Delivered independent web projects from requirements through deployment and maintenance, alongside other periods of work.",
       "highlights": [
         "Owner reports 20+ projects spanning WordPress and custom PHP/Laravel applications.",

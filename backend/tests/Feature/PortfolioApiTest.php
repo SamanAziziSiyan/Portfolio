@@ -28,6 +28,10 @@ class PortfolioApiTest extends TestCase
 
         $this->getJson('/api/v1/projects/not-a-project')->assertNotFound();
         $this->getJson('/api/v1/experiences')->assertOk()->assertJsonCount(9, 'data')
+            ->assertJsonPath('data.0.location', 'Greater Vancouver, Canada')
+            ->assertJsonPath('data.0.employment_type', 'Full-time')
+            ->assertJsonPath('data.2.employment_type', 'Freelance')
+            ->assertJsonPath('data.8.workplace_type', 'Hybrid')
             ->assertJsonPath('data.2.company', 'Dalga')
             ->assertJsonPath('data.4.role', 'Technical Team Lead')
             ->assertJsonPath('data.5.role', 'Full Stack Web Developer');

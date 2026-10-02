@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FiArrowUpRight, FiCalendar, FiPlus } from "react-icons/fi";
+import { FiArrowUpRight, FiBriefcase, FiCalendar, FiMapPin, FiPlus } from "react-icons/fi";
 import type { Experience } from "@/lib/data";
 
 const logos: Record<string, { src: string; alt: string }> = {
@@ -20,6 +20,11 @@ function CompanyMark({ company }: { company: string }) {
   </span>;
 }
 
+function roleTitle(experience: Experience) {
+  const title = experience.role.replace(/\s*·\s*(contract|freelance)$/i, "");
+  return experience.employment_type === "Freelance" ? title.replace(/^Freelance\s+/i, "") : title;
+}
+
 export function ExperienceTimeline({ experiences }: { experiences: Experience[] }) {
   return <div className="timeline timeline-editorial">
     <span className="timeline-track" aria-hidden="true"><span className="timeline-track-fill" /></span>
@@ -29,8 +34,12 @@ export function ExperienceTimeline({ experiences }: { experiences: Experience[] 
         <CompanyMark company={experience.company} />
         <div className="timeline-copy flex min-w-0 flex-col gap-3">
           <div className="timeline-heading flex flex-wrap items-start justify-between gap-3">
-            <div className="flex flex-col gap-1"><h3>{experience.company}</h3><span className="timeline-role">{experience.role}</span></div>
+            <div className="flex flex-col gap-1"><h3>{experience.company}</h3><span className="timeline-role">{roleTitle(experience)}</span></div>
             <time className="timeline-date inline-flex items-center gap-2" dateTime={experience.start_date}><FiCalendar aria-hidden="true" />{experience.period}</time>
+          </div>
+          <div className="timeline-context flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span className="inline-flex items-center gap-1.5"><FiMapPin aria-hidden="true" />{experience.location}</span>
+            <span className="inline-flex items-center gap-1.5"><FiBriefcase aria-hidden="true" />{experience.employment_type} · {experience.workplace_type}</span>
           </div>
           <p>{experience.summary}</p>
           <details className="timeline-detail"><summary className="inline-flex items-center gap-2">Scope & contributions <FiPlus aria-hidden="true" /></summary><div className="timeline-extra flex flex-col gap-4"><ul className="flex flex-col gap-2">{experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>{experience.link && <a href={experience.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 self-start">Related output or source <FiArrowUpRight aria-hidden="true" /></a>}</div></details>

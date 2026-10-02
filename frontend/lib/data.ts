@@ -12,7 +12,8 @@ export type Project = {
 };
 export type Experience = {
   company: string; role: string; period: string; start_date: string;
-  end_date: string | null; summary: string; highlights: string[];
+  end_date: string | null; location: string; employment_type: string;
+  workplace_type: string; summary: string; highlights: string[];
   technologies: string[]; evidence_type: string; link: string | null;
 };
 export type Product = {

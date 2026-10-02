@@ -91,6 +91,7 @@ button { cursor: pointer; }
 .hero-editorial-copy { position: relative; z-index: 2; padding: 36px 0 45px; }
 .hero-overline { color: var(--accent); font: italic clamp(19px, 2vw, 27px)/1.2 var(--font-display); }
 .hero h1 { font-size: clamp(64px, 6.9vw, 108px); line-height: .96; letter-spacing: -.07em; }
+.hero-role { color: var(--accent); font-size: clamp(16px, 1.5vw, 21px); font-weight: 750; letter-spacing: .09em; text-transform: uppercase; }
 .hero-statement { max-width: 570px; color: var(--text-secondary); font: clamp(21px, 2vw, 29px)/1.35 var(--font-display); letter-spacing: -.02em; }
 .text-action { width: fit-content; border-bottom: 1px solid var(--accent); padding-bottom: 5px; color: var(--text-primary); font-size: 12px; font-weight: 700; transition: color .2s, gap .2s; }
 .text-action:hover { color: var(--accent); gap: 12px; }
@@ -105,11 +106,11 @@ button { cursor: pointer; }
 .orbit-crosshair { position: absolute; left: 50%; height: 1px; width: 42px; background: var(--accent); opacity: .6; transform: translateX(-50%); }
 .orbit-crosshair-top { top: 4%; }.orbit-crosshair-bottom { bottom: 4%; }
 .orbit-skills { list-style: none; margin: 0; padding: 0; }
-.orbit-skill { position: absolute; z-index: 3; transform: rotate(var(--start-angle)); animation: orbit-circuit var(--orbit-duration) linear infinite; }
+.orbit-skill { position: absolute; z-index: 3; pointer-events: none; transform: rotate(var(--start-angle)); animation: orbit-circuit var(--orbit-duration) linear infinite; }
 .orbit-outer { inset: 7%; }
 .orbit-inner { inset: 22%; }
-.orbit-node { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%) rotate(var(--counter-start)); animation: orbit-counter var(--orbit-duration) linear infinite; }
-.orbit-icon { width: 55px; height: 55px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 15px; background: var(--surface-raised); box-shadow: var(--shadow); color: var(--text-primary); font-size: 27px; transition: border-color .2s, color .2s, scale .2s; }
+.orbit-node { position: absolute; top: 0; left: 50%; pointer-events: none; transform: translate(-50%, -50%) rotate(var(--counter-start)); animation: orbit-counter var(--orbit-duration) linear infinite; }
+.orbit-icon { width: 55px; height: 55px; display: grid; place-items: center; pointer-events: auto; border: 1px solid var(--border); border-radius: 15px; background: var(--surface-raised); box-shadow: var(--shadow); color: var(--text-primary); font-size: 27px; transition: border-color .2s, color .2s, scale .2s; }
 .orbit-icon:hover, .orbit-icon:focus-visible, .orbit-icon[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); scale: 1.12; }
 .orbit-active .orbit-skill, .orbit-active .orbit-node { animation-play-state: paused; }
 .orbit-detail { position: absolute; z-index: 5; left: 50%; bottom: -1%; width: min(300px, 84%); padding: 13px 16px; border: 1px solid var(--accent); border-radius: 10px; background: var(--surface-raised); box-shadow: var(--shadow); opacity: 0; transform: translate(-50%, 10px); pointer-events: none; transition: opacity .25s, transform .25s; }
@@ -139,6 +140,8 @@ button { cursor: pointer; }
 .timeline-heading h3 { font-size: clamp(23px, 2.15vw, 31px); line-height: 1.05; letter-spacing: -.04em; }
 .timeline-role { color: var(--accent); font-size: 12px; font-weight: 650; }
 .timeline-date { color: var(--text-secondary); font-size: 11px; white-space: nowrap; }
+.timeline-context { color: var(--text-secondary); font-size: 11px; line-height: 1.45; }
+.timeline-context svg { flex: none; color: var(--accent); font-size: 12px; }
 .timeline-copy > p { max-width: 680px; color: var(--text-secondary); font-size: 13px; line-height: 1.65; }
 .timeline-detail summary, .work-detail summary { width: fit-content; cursor: pointer; list-style: none; color: var(--text-primary); font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
 .timeline-detail summary::-webkit-details-marker, .work-detail summary::-webkit-details-marker, .more-work summary::-webkit-details-marker { display: none; }
