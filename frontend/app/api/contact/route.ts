@@ -1,8 +1,14 @@
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
   const host = request.headers.get("host");
-  if (origin && host && new URL(origin).host !== host) {
-    return Response.json({ message: "This request is not allowed." }, { status: 403 });
+  if (origin) {
+    try {
+      if (!host || new URL(origin).host !== host) {
+        return Response.json({ message: "This request is not allowed." }, { status: 403 });
+      }
+    } catch {
+      return Response.json({ message: "This request is not allowed." }, { status: 403 });
+    }
   }
   if (!request.headers.get("content-type")?.startsWith("application/json")) {
     return Response.json({ message: "Please send JSON." }, { status: 415 });

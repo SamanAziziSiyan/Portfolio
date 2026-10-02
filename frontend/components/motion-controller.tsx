@@ -26,7 +26,7 @@ export function MotionController() {
       if (!timeline || !track) return;
       const target = window.innerHeight * .48;
       const trackRect = track.getBoundingClientRect();
-      const fraction = Math.max(0, Math.min(1, (target - trackRect.top) / trackRect.height));
+      const fraction = trackRect.height > 0 ? Math.max(0, Math.min(1, (target - trackRect.top) / trackRect.height)) : 0;
       timeline.style.setProperty("--timeline-progress", `${(fraction * 100).toFixed(2)}%`);
       const progressBottom = trackRect.top + fraction * trackRect.height;
       let activeIndex = entries.length ? 0 : -1;
@@ -44,11 +44,14 @@ export function MotionController() {
       timeline.classList.add("is-ready");
     };
     const schedule = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+    const timelineObserver = timeline ? new ResizeObserver(schedule) : null;
+    if (timeline) timelineObserver?.observe(timeline);
     schedule();
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
     return () => {
       sectionObserver.disconnect();
+      timelineObserver?.disconnect();
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
       if (frame) window.cancelAnimationFrame(frame);

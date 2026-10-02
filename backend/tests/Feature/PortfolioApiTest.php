@@ -70,4 +70,17 @@ class PortfolioApiTest extends TestCase
         }
         $this->postJson('/api/v1/contact', $payload)->assertTooManyRequests();
     }
+
+    public function test_distinct_senders_do_not_share_the_five_message_limit(): void
+    {
+        for ($sender = 0; $sender < 6; $sender++) {
+            $this->postJson('/api/v1/contact', [
+                'name' => 'Jane Engineer',
+                'email' => "sender{$sender}@example.com",
+                'message' => 'A legitimate project enquiry with enough detail.',
+            ])->assertCreated();
+        }
+
+        $this->assertDatabaseCount('contact_submissions', 6);
+    }
 }

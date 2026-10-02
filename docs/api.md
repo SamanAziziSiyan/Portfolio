@@ -10,7 +10,7 @@ Base path: `/api/v1`. JSON responses use a `data` property for reads.
 | `GET` | `/products` | Verified public product context |
 | `POST` | `/contact` | Validates and persists a message; returns 201 |
 
-Contact JSON: `{"name":"Jane Engineer","email":"jane@example.com","message":"A useful message of at least twenty characters."}`. A `website` field, if present with a value, is rejected as a honeypot. Validation errors return 422. The route is limited to five requests per IP per hour and returns 429 when exceeded. No public endpoint exposes stored contact messages.
+Contact JSON: `{"name":"Jane Engineer","email":"jane@example.com","message":"A useful message of at least twenty characters."}`. A `website` field, if present with a value, is rejected as a honeypot. Validation errors return 422. The route limits each email address to five requests per hour, with an additional 100-request hourly cap per backend IP, and returns 429 when exceeded. No public endpoint exposes stored contact messages.
 
 The Next.js application proxies its same-origin `/api/contact` route to this Laravel endpoint. The public GET endpoints are also useful to a future controlled client or data export; they are not an artificial echo of the frontend's component state.
 

@@ -22,7 +22,7 @@ The main portfolio and CV view are server-rendered. The page uses native `<detai
 ## Security and operations
 
 - Laravel validates name, RFC email and message length; a hidden website field must remain empty.
-- The contact route permits five submissions per IP per hour. The Next.js proxy rejects mismatched browser origins when an Origin is sent and caps request size. Direct API callers still meet Laravel validation and throttling.
+- The contact route permits five submissions per email per hour, with an additional 100-request hourly cap per backend IP. The per-email limit avoids grouping visitors together when they reach Laravel through the Next.js proxy. The proxy rejects mismatched or malformed browser origins when an Origin is sent and caps request size. Direct API callers still meet Laravel validation and throttling.
 - Eloquent parameterizes database writes; no raw user-derived SQL is used.
 - Laravel auto-escapes returned JSON; React escapes rendered strings. The site does not inject portfolio content as HTML.
 - No admin UI or public submission listing exists. Operator access to SQLite is a deployment responsibility.

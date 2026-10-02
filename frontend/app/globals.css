@@ -216,5 +216,6 @@ button { cursor: pointer; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .timeline.is-ready .timeline-entry:not(.is-visited) .timeline-entry-inner { opacity: 1; transform: none; }
 }
 @media print { .site-header, .site-footer, .cv-actions { display: none !important; } body { background: white; color: #111; }.cv-sheet { padding: 0; border: 0; } }
