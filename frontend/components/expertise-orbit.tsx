@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { SiComposer, SiDocker, SiElementor, SiJavascript, SiLaravel, SiNextdotjs, SiPhp, SiReact, SiTypescript, SiWoocommerce, SiWordpress } from "react-icons/si";
 import type { Experience } from "@/lib/data";
+import type { Locale } from "@/lib/language";
+import { companyName, translations } from "@/lib/translations";
 
 const skills = [
   { name: "PHP", icon: SiPhp, x: 50, y: 6 },
@@ -23,7 +25,8 @@ function skillPosition(x: number, y: number): CSSProperties {
   return { "--skill-x": `${x}%`, "--skill-y": `${y}%` } as CSSProperties;
 }
 
-export function ExpertiseOrbit({ experiences }: { experiences: Experience[] }) {
+export function ExpertiseOrbit({ experiences, locale }: { experiences: Experience[]; locale: Locale }) {
+  const t = translations[locale];
   const [active, setActive] = useState<string | null>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef(false);
@@ -83,21 +86,21 @@ export function ExpertiseOrbit({ experiences }: { experiences: Experience[] }) {
 
   const details = skills.map((skill) => ({
     ...skill,
-    companies: [...new Set(experiences.filter((experience) => experience.technologies.includes(skill.name)).map((experience) => experience.company))],
+    companies: [...new Set(experiences.filter((experience) => experience.technologies.includes(skill.name)).map((experience) => companyName(experience.company, locale)))],
   }));
   const current = details.find((skill) => skill.name === active);
 
-  return <div ref={orbitRef} className={`expertise-orbit ${active ? "orbit-active" : ""}`} aria-label="Core expertise around Saman's GitHub profile photo" onMouseLeave={(event) => { if (!event.currentTarget.contains(document.activeElement)) setActive(null); }} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setActive(null); }} onKeyDown={(event) => { if (event.key === "Escape") setActive(null); }}>
+  return <div ref={orbitRef} className={`expertise-orbit ${active ? "orbit-active" : ""}`} aria-label={t.orbitLabel} onMouseLeave={(event) => { if (!event.currentTarget.contains(document.activeElement)) setActive(null); }} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setActive(null); }} onKeyDown={(event) => { if (event.key === "Escape") setActive(null); }}>
     <div className="orbit-ring orbit-ring-outer" aria-hidden="true" />
     <div className="orbit-ring orbit-ring-inner" aria-hidden="true" />
-    <div className="orbit-avatar"><Image src="/avatar-github.webp" alt="Saman Azizi Siyan, public GitHub profile photograph" fill sizes="(max-width: 640px) 170px, 240px" priority /></div>
+    <div className="orbit-avatar"><Image src="/avatar-github.webp" alt={locale === "fa" ? "تصویر پروفایل سامان عزیزی سیان" : "Saman Azizi Siyan, public GitHub profile photograph"} fill sizes="(max-width: 640px) 170px, 240px" priority /></div>
     <ul className="orbit-skills">
       {details.map(({ name, icon: Icon, x, y, companies }) => <li key={name} className="orbit-skill" style={skillPosition(x, y)}>
-        <div className="orbit-node"><button type="button" className="orbit-icon" aria-label={`${name}: used at ${companies.join(", ")}`} aria-expanded={active === name} aria-controls="orbit-detail" title={`${name} — ${companies.join(", ")}`} onMouseEnter={() => setActive(name)} onFocus={() => setActive(name)} onClick={() => setActive(name)}><Icon aria-hidden="true" /></button></div>
+        <div className="orbit-node"><button type="button" className="orbit-icon" aria-label={`${name}: ${t.skillUsedAt} ${companies.join("، ")}`} aria-expanded={active === name} aria-controls="orbit-detail" title={`${name} — ${companies.join("، ")}`} onMouseEnter={() => setActive(name)} onFocus={() => setActive(name)} onClick={() => setActive(name)}><Icon aria-hidden="true" /></button></div>
       </li>)}
     </ul>
     <div id="orbit-detail" className="orbit-detail" aria-hidden={!current} aria-live="polite">
-      {current && <><div className="orbit-detail-heading"><strong>{current.name}</strong><span>USED AT</span></div><p>{current.companies.join(" · ")}</p></>}
+      {current && <><div className="orbit-detail-heading"><strong>{current.name}</strong><span>{t.usedAt}</span></div><p>{current.companies.join(" · ")}</p></>}
     </div>
   </div>;
 }
