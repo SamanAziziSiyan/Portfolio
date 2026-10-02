@@ -41,7 +41,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.dataset.theme = next;
     try { window.localStorage.setItem("portfolio-theme", next); } catch { /* Theme still works when storage is unavailable. */ }
     setTheme(next);
-    transitionTimer.current = window.setTimeout(() => document.documentElement.classList.remove("theme-changing"), 460);
+    transitionTimer.current = window.setTimeout(() => {
+      document.documentElement.classList.remove("theme-changing");
+      transitionTimer.current = null;
+    }, 1200);
   }, []);
 
   return <ThemeContext.Provider value={{ theme, toggle }}>{children}</ThemeContext.Provider>;

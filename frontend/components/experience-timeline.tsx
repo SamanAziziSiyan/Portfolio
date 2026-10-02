@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { FiArrowUpRight, FiBriefcase, FiCalendar, FiMapPin, FiPlus } from "react-icons/fi";
+import { ExperienceDuration } from "@/components/experience-duration";
 import type { Experience } from "@/lib/data";
 import type { Locale } from "@/lib/language";
 import { experienceText } from "@/lib/portfolio-fa";
@@ -30,18 +31,20 @@ function roleTitle(experience: Experience) {
 
 export function ExperienceTimeline({ experiences, locale }: { experiences: Experience[]; locale: Locale }) {
   const t = translations[locale];
+  const initialMonth = new Date().toISOString().slice(0, 7);
   return <div className="timeline timeline-editorial">
     <span className="timeline-track" aria-hidden="true"><span className="timeline-track-fill" /></span>
-    {experiences.map((experience) => {
+    {experiences.map((experience, index) => {
       const content = experienceText(experience, locale);
-      return <article className="timeline-entry" key={`${experience.company}-${experience.role}`}>
-        <span className="timeline-node" aria-hidden="true" />
+      const id = `experience-${index + 1}`;
+      return <article className="timeline-entry" id={id} key={`${experience.company}-${experience.role}`}>
+        <a className="timeline-node" href={`#${id}`} aria-label={locale === "fa" ? `رفتن به سابقه ${content.role} در ${content.company}` : `Go to ${content.role} at ${content.company}`} />
         <div className="timeline-entry-inner">
           <CompanyMark company={experience.company} locale={locale} />
           <div className="timeline-copy flex min-w-0 flex-col gap-3">
             <div className="timeline-heading flex flex-wrap items-start justify-between gap-3">
               <div className="flex flex-col gap-1"><h3>{content.company}</h3><span className="timeline-role">{locale === "fa" ? content.role : roleTitle(experience)}</span></div>
-              <time className="timeline-date inline-flex items-center gap-2" dateTime={experience.start_date}><FiCalendar aria-hidden="true" />{content.period}</time>
+              <span className="timeline-date inline-flex items-center gap-2"><FiCalendar aria-hidden="true" /><time dateTime={experience.start_date}>{content.period}</time><span aria-hidden="true">·</span><ExperienceDuration startDate={experience.start_date} endDate={experience.end_date} initialMonth={initialMonth} locale={locale} /></span>
             </div>
             <div className="timeline-context flex flex-wrap items-center gap-x-4 gap-y-1">
               <span className="inline-flex items-center gap-1.5"><FiMapPin aria-hidden="true" />{content.location}</span>
