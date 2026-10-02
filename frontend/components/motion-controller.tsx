@@ -28,18 +28,20 @@ export function MotionController() {
       const trackRect = track.getBoundingClientRect();
       const fraction = Math.max(0, Math.min(1, (target - trackRect.top) / trackRect.height));
       timeline.style.setProperty("--timeline-progress", `${(fraction * 100).toFixed(2)}%`);
-      let nearest = -1;
-      let distance = Infinity;
+      const progressBottom = trackRect.top + fraction * trackRect.height;
+      let activeIndex = entries.length ? 0 : -1;
       entries.forEach((entry, index) => {
-        const rect = entry.getBoundingClientRect();
-        const center = rect.top + Math.min(rect.height / 2, 85);
-        entry.classList.toggle("is-visited", center < target);
-        if (rect.bottom > 90 && rect.top < window.innerHeight - 80 && Math.abs(center - target) < distance) {
-          nearest = index;
-          distance = Math.abs(center - target);
-        }
+        if (index === 0) return;
+        const node = entry.querySelector<HTMLElement>(".timeline-node");
+        if (!node) return;
+        const nodeRect = node.getBoundingClientRect();
+        if (nodeRect.top + nodeRect.height / 2 <= progressBottom) activeIndex = index;
       });
-      entries.forEach((entry, index) => entry.classList.toggle("is-active", index === nearest));
+      entries.forEach((entry, index) => {
+        entry.classList.toggle("is-visited", index <= activeIndex);
+        entry.classList.toggle("is-active", index === activeIndex);
+      });
+      timeline.classList.add("is-ready");
     };
     const schedule = () => { if (!frame) frame = window.requestAnimationFrame(update); };
     schedule();
