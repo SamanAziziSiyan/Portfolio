@@ -125,7 +125,7 @@ button { cursor: pointer; }
 .timeline-node { position: absolute; z-index: 2; left: 15px; top: 33px; width: 18px; height: 18px; border: 2px solid var(--border); border-radius: 50%; background: var(--surface); transition: background .3s, border-color .3s, transform .3s; }
 .timeline-entry.is-active .timeline-node, .timeline-entry.is-visited .timeline-node { background: var(--accent); border-color: var(--accent); transform: scale(1.12); }
 .timeline-entry-inner { display: flex; align-items: flex-start; gap: 18px; min-width: 0; padding: 25px 0 27px; border-bottom: 1px solid var(--border); opacity: 1; transition: opacity .55s ease, transform .55s ease; }
-.timeline.is-ready .timeline-entry:not(.is-visited) .timeline-entry-inner { opacity: .55; transform: translateY(10px); }
+.timeline.is-ready .timeline-entry:not(.is-visited) .timeline-entry-inner { opacity: .15; transform: translateY(10px); }
 .timeline.is-ready .timeline-entry:not(.is-visited):focus-within .timeline-entry-inner { opacity: 1; transform: translateY(0); }
 .company-mark { width: 48px; height: 48px; flex: none; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-raised); color: var(--text-secondary); font-size: 13px; font-weight: 750; }
 .company-mark img { width: 34px; height: 34px; object-fit: contain; }
