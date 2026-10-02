@@ -10,24 +10,29 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-color-scheme: light)");
+    const savedTheme = () => {
+      try {
+        const saved = window.localStorage.getItem("portfolio-theme");
+        return saved === "dark" || saved === "light" ? saved : null;
+      } catch { return null; }
+    };
     const sync = () => {
-      const saved = window.localStorage.getItem("portfolio-theme");
-      const next = saved === "dark" || saved === "light" ? saved : media.matches ? "light" : "dark";
+      const next = savedTheme() ?? (media.matches ? "light" : "dark");
       document.documentElement.dataset.theme = next;
       setTheme(next);
     };
     sync();
     media.addEventListener("change", sync);
-    return () => media.removeEventListener("change", sync);
+    window.addEventListener("storage", sync);
+    return () => { media.removeEventListener("change", sync); window.removeEventListener("storage", sync); };
   }, []);
 
   const toggle = useCallback(() => {
-    setTheme((current) => {
-      const next = current === "dark" ? "light" : "dark";
-      window.localStorage.setItem("portfolio-theme", next);
-      document.documentElement.dataset.theme = next;
-      return next;
-    });
+    const current = document.documentElement.dataset.theme === "light" ? "light" : "dark";
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { window.localStorage.setItem("portfolio-theme", next); } catch { /* Theme still works when storage is unavailable. */ }
+    setTheme(next);
   }, []);
 
   return <ThemeContext.Provider value={{ theme, toggle }}>{children}</ThemeContext.Provider>;

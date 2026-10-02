@@ -1,6 +1,6 @@
 # Saman Azizi Siyan — engineering portfolio
 
-A production-oriented monorepo for a full stack engineering portfolio. The visitor experience has two visual compositions of the same content: the full-width editorial `/` and the framed `/demo-2`. Both have dark and light themes, a concise introduction, complete expandable career timeline, selected work with direct product links, engineering approach, and contact form. The CV has a separate document view and PDF download.
+A production-oriented monorepo for a full stack engineering portfolio. The full-width portfolio at `/` has dark and light themes, a concise introduction, complete expandable career timeline, selected work with direct product links, engineering approach, and contact form. The CV has a separate document view and PDF download.
 
 ## Architecture
 
@@ -25,7 +25,7 @@ The Laravel API stores structured projects, technologies, evidence links, experi
 1. Copy `.env.example` to `.env` in the repository root.
 2. Generate a key with `php -r "echo 'base64:'.base64_encode(random_bytes(32));"` and put the result in `APP_KEY=`. Use a unique key and keep `.env` private.
 3. Run `docker compose up --build -d`.
-4. Open `http://localhost:3000` or the boxed alternative at `http://localhost:3000/demo-2`. The API health endpoint is `http://localhost:8080/up`, and the project index API is `http://localhost:8080/api/v1/projects`.
+4. Open `http://localhost:3000`. The API health endpoint is `http://localhost:8080/up`, and the project index API is `http://localhost:8080/api/v1/projects`.
 
 Compose builds Next.js, PHP-FPM and Nginx. It migrates and seeds a named SQLite volume on startup. The published ports bind to loopback for local development. `docker compose down` stops services without deleting the database volume. Docker Desktop or another working Docker engine is required.
 

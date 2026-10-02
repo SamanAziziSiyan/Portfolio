@@ -3,6 +3,7 @@ import path from "node:path";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  allowedDevOrigins: ["127.0.0.1"],
   outputFileTracingRoot: path.resolve(__dirname, ".."),
   turbopack: { root: path.resolve(__dirname, "..") },
   async redirects() {
