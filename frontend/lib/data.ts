@@ -33,6 +33,7 @@ async function fromApi<T>(path: string, fallback: T): Promise<T> {
     });
     if (!response.ok) return fallback;
     const body = (await response.json()) as { data?: T };
+    if (Array.isArray(fallback) && (!Array.isArray(body.data) || body.data.length === 0)) return fallback;
     return body.data ?? fallback;
   } catch {
     return fallback;

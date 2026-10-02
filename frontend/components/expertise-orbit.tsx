@@ -10,13 +10,13 @@ const skills = [
   { name: "Laravel", icon: SiLaravel, x: 68, y: 31 },
   { name: "WordPress", icon: SiWordpress, x: 92, y: 43 },
   { name: "WooCommerce", icon: SiWoocommerce, x: 72, y: 72 },
-  { name: "TypeScript", icon: SiTypescript, x: 87, y: 89 },
+  { name: "TypeScript", icon: SiTypescript, x: 92, y: 91 },
   { name: "Next.js", icon: SiNextdotjs, x: 31, y: 72 },
   { name: "Docker", icon: SiDocker, x: 48, y: 94 },
   { name: "JavaScript", icon: SiJavascript, x: 9, y: 65 },
   { name: "React", icon: SiReact, x: 29, y: 31 },
   { name: "Elementor", icon: SiElementor, x: 88, y: 15 },
-  { name: "Composer", icon: SiComposer, x: 13, y: 22 },
+  { name: "Composer", icon: SiComposer, x: 10, y: 17 },
 ] as const;
 
 function skillPosition(x: number, y: number): CSSProperties {
@@ -31,13 +31,14 @@ export function ExpertiseOrbit({ experiences }: { experiences: Experience[] }) {
 
   useEffect(() => {
     const orbit = orbitRef.current;
-    if (!orbit || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!orbit) return;
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const nodes = [...orbit.querySelectorAll<HTMLElement>(".orbit-node")];
     let stopped = false;
 
     const wander = (node: HTMLElement, x: number, y: number) => {
-      if (stopped) return;
-      const limit = Math.min(16, orbit.clientWidth * .035);
+      if (stopped || motionPreference.matches) return;
+      const limit = Math.min(16, orbit.clientWidth * .025);
       const nextX = Math.round((Math.random() * 2 - 1) * limit);
       const nextY = Math.round((Math.random() * 2 - 1) * limit);
       const animation = node.animate([
@@ -54,9 +55,21 @@ export function ExpertiseOrbit({ experiences }: { experiences: Experience[] }) {
       };
     };
 
-    nodes.forEach((node) => wander(node, 0, 0));
+    const syncMotion = () => {
+      if (motionPreference.matches) {
+        animationsRef.current.forEach((animation) => animation.cancel());
+        animationsRef.current = [];
+        nodes.forEach((node) => node.style.removeProperty("transform"));
+      } else if (animationsRef.current.length === 0) {
+        nodes.forEach((node) => wander(node, 0, 0));
+      }
+    };
+
+    motionPreference.addEventListener("change", syncMotion);
+    syncMotion();
     return () => {
       stopped = true;
+      motionPreference.removeEventListener("change", syncMotion);
       animationsRef.current.forEach((animation) => animation.cancel());
       animationsRef.current = [];
       nodes.forEach((node) => node.style.removeProperty("transform"));
@@ -74,7 +87,7 @@ export function ExpertiseOrbit({ experiences }: { experiences: Experience[] }) {
   }));
   const current = details.find((skill) => skill.name === active);
 
-  return <div ref={orbitRef} className={`expertise-orbit ${active ? "orbit-active" : ""}`} aria-label="Core expertise around Saman's GitHub profile photo" onMouseLeave={() => setActive(null)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setActive(null); }} onKeyDown={(event) => { if (event.key === "Escape") setActive(null); }}>
+  return <div ref={orbitRef} className={`expertise-orbit ${active ? "orbit-active" : ""}`} aria-label="Core expertise around Saman's GitHub profile photo" onMouseLeave={(event) => { if (!event.currentTarget.contains(document.activeElement)) setActive(null); }} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setActive(null); }} onKeyDown={(event) => { if (event.key === "Escape") setActive(null); }}>
     <div className="orbit-ring orbit-ring-outer" aria-hidden="true" />
     <div className="orbit-ring orbit-ring-inner" aria-hidden="true" />
     <div className="orbit-avatar"><Image src="/avatar-github.webp" alt="Saman Azizi Siyan, public GitHub profile photograph" fill sizes="(max-width: 640px) 170px, 240px" priority /></div>

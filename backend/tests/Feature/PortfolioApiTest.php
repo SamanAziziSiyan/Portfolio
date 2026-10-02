@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\ContactSubmission;
+use App\Models\PortfolioProduct;
+use App\Models\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -45,6 +47,10 @@ class PortfolioApiTest extends TestCase
         ])->assertUnprocessable();
 
         $this->postJson('/api/v1/contact', [
+            'name' => '  ', 'email' => 'jane@example.com', 'message' => str_repeat(' ', 20),
+        ])->assertUnprocessable();
+
+        $this->postJson('/api/v1/contact', [
             'name' => 'Jane Engineer',
             'email' => 'jane@example.com',
             'message' => 'A legitimate project enquiry with enough detail.',
@@ -60,6 +66,7 @@ class PortfolioApiTest extends TestCase
             'name' => 'Jane Engineer',
             'email' => 'JANE@example.com',
             'message' => 'A legitimate project enquiry with enough detail.',
+            'website' => '',
         ];
         $this->postJson('/api/v1/contact', $payload)->assertCreated();
         $this->assertDatabaseHas('contact_submissions', ['email' => 'jane@example.com']);
@@ -73,7 +80,7 @@ class PortfolioApiTest extends TestCase
 
     public function test_distinct_senders_do_not_share_the_five_message_limit(): void
     {
-        for ($sender = 0; $sender < 6; $sender++) {
+        for ($sender = 0; $sender < 101; $sender++) {
             $this->postJson('/api/v1/contact', [
                 'name' => 'Jane Engineer',
                 'email' => "sender{$sender}@example.com",
@@ -81,6 +88,31 @@ class PortfolioApiTest extends TestCase
             ])->assertCreated();
         }
 
-        $this->assertDatabaseCount('contact_submissions', 6);
+        $this->assertDatabaseCount('contact_submissions', 101);
+    }
+
+    public function test_reseeding_removes_stale_published_content_without_losing_messages(): void
+    {
+        $this->seed();
+
+        $project = Project::firstOrFail()->replicate();
+        $project->slug = 'stale-project';
+        $project->save();
+
+        $product = PortfolioProduct::firstOrFail()->replicate();
+        $product->slug = 'stale-product';
+        $product->save();
+
+        ContactSubmission::create([
+            'name' => 'Jane Engineer',
+            'email' => 'jane@example.com',
+            'message' => 'A legitimate project enquiry with enough detail.',
+        ]);
+
+        $this->seed();
+
+        $this->assertDatabaseMissing('projects', ['slug' => 'stale-project']);
+        $this->assertDatabaseMissing('products', ['slug' => 'stale-product']);
+        $this->assertDatabaseCount('contact_submissions', 1);
     }
 }

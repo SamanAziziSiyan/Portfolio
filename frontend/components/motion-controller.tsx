@@ -44,7 +44,7 @@ export function MotionController() {
       timeline.classList.add("is-ready");
     };
     const schedule = () => { if (!frame) frame = window.requestAnimationFrame(update); };
-    const timelineObserver = timeline ? new ResizeObserver(schedule) : null;
+    const timelineObserver = timeline && typeof ResizeObserver !== "undefined" ? new ResizeObserver(schedule) : null;
     if (timeline) timelineObserver?.observe(timeline);
     schedule();
     window.addEventListener("scroll", schedule, { passive: true });

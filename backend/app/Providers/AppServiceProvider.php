@@ -22,14 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        RateLimiter::for('contact', function (Request $request): array {
+        RateLimiter::for('contact', function (Request $request): Limit {
             $email = $request->input('email');
             $sender = is_string($email) ? mb_strtolower(trim($email)) : '';
 
-            return [
-                Limit::perHour(5)->by('email:'.hash('sha256', $sender)),
-                Limit::perHour(100)->by('ip:'.$request->ip()),
-            ];
+            return Limit::perHour(5)->by('email:'.hash('sha256', $sender));
         });
     }
 }

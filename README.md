@@ -74,7 +74,7 @@ Run `php backend/artisan migrate:fresh --seed` only when deliberately resetting 
 | `FRONTEND_PORT`, `API_PORT` | root `.env` for Compose | Local loopback ports |
 | `DB_DATABASE` | backend | SQLite file path |
 
-Never commit `.env`, contact data, credentials or production keys. Root and application ignore rules exclude runtime state. Contact submissions are stored in SQLite with no public read endpoint. Operators can review them through protected server/database access; add a private delivery workflow before using the form as a business-critical inbox. The API rate-limits submissions to five per email per hour, also caps requests per backend IP, and rejects a honeypot field. The Next.js route checks the browser origin and proxies to Laravel. See [security notes](docs/architecture.md#security-and-operations).
+Never commit `.env`, contact data, credentials or production keys. Root and application ignore rules exclude runtime state. Contact submissions are stored in SQLite with no public read endpoint. Operators can review them through protected server/database access; add a private delivery workflow before using the form as a business-critical inbox. The API rate-limits submissions to five per email per hour and rejects a honeypot field. The Next.js route checks the browser origin and proxies to Laravel. See [security notes](docs/architecture.md#security-and-operations).
 
 ## Testing and CI
 

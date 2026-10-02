@@ -11,12 +11,10 @@ RUN npm run build
 
 FROM node:22-alpine
 ENV NODE_ENV=production
+ENV HOSTNAME=0.0.0.0
 WORKDIR /app/frontend
-COPY frontend/package*.json ./
-RUN npm ci --omit=dev && npm cache clean --force
-COPY --from=builder /app/frontend/.next ./.next
+COPY --from=builder /app/frontend/.next/standalone /app
+COPY --from=builder /app/frontend/.next/static ./.next/static
 COPY --from=builder /app/frontend/public ./public
-COPY --from=builder /app/frontend/next.config.ts ./next.config.ts
-COPY --from=builder /app/packages /app/packages
 EXPOSE 3000
-CMD ["npm", "run", "start", "--", "-H", "0.0.0.0"]
+CMD ["node", "server.js"]

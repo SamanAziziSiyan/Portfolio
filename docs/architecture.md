@@ -11,9 +11,9 @@ Next.js server → Laravel public GET endpoints → relational portfolio data
               ↘ reviewed content snapshot when the API is unavailable
 ```
 
-The frontend holds the one-page layout, anchor navigation, metadata and form interaction. Its server components fetch public portfolio records from Laravel when `PORTFOLIO_API_URL` is configured, with a 2.5-second timeout and a reviewed snapshot fallback. The contact route has no fallback: a failed API returns an error, so a message is never silently lost.
+The frontend holds the one-page layout, anchor navigation, metadata and form interaction. Its server components fetch public portfolio records from Laravel when `PORTFOLIO_API_URL` is configured, with a 2.5-second timeout and a reviewed snapshot fallback for unavailable or empty collections. The contact route has no fallback: a failed API returns an error, so a message is never silently lost.
 
-Laravel owns database schema, seeding, validation and persistence. Projects link to technologies through a pivot and to evidence entries through a one-to-many relation. Experiences have relational highlights and technology links. Products hold public product context. Contact submissions live in a separate table with no public read API. A seed run is idempotent for published content and does not clear contact messages.
+Laravel owns database schema, seeding, validation and persistence. Projects link to technologies through a pivot and to evidence entries through a one-to-many relation. Experiences have relational highlights and technology links. Products hold public product context. Contact submissions live in a separate table with no public read API. A seed run replaces stale published projects, experiences and products in one transaction without clearing contact messages.
 
 ## Rendering and performance
 
@@ -22,7 +22,7 @@ The main portfolio and CV view are server-rendered. The page uses native `<detai
 ## Security and operations
 
 - Laravel validates name, RFC email and message length; a hidden website field must remain empty.
-- The contact route permits five submissions per email per hour, with an additional 100-request hourly cap per backend IP. The per-email limit avoids grouping visitors together when they reach Laravel through the Next.js proxy. The proxy rejects mismatched or malformed browser origins when an Origin is sent and caps request size. Direct API callers still meet Laravel validation and throttling.
+- The contact route permits five submissions per email per hour. It avoids an IP cap because Laravel sees the shared Next.js proxy address rather than each visitor's address. The proxy rejects mismatched or malformed browser origins when an Origin is sent and caps request size. Direct API callers still meet Laravel validation and throttling.
 - Eloquent parameterizes database writes; no raw user-derived SQL is used.
 - Laravel auto-escapes returned JSON; React escapes rendered strings. The site does not inject portfolio content as HTML.
 - No admin UI or public submission listing exists. Operator access to SQLite is a deployment responsibility.
