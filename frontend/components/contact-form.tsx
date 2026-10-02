@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { FiArrowUpRight } from "react-icons/fi";
 
 export function ContactForm() {
   const [state, setState] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -32,7 +33,7 @@ export function ContactForm() {
     <div className="field"><label htmlFor="contact-message">What are you working on?</label><textarea id="contact-message" name="message" required minLength={20} maxLength={5000} /></div>
     <div className="honeypot" aria-hidden="true"><label htmlFor="contact-website">Leave this field empty</label><input id="contact-website" name="website" tabIndex={-1} autoComplete="off" /></div>
     <p className="form-note">The form stores your name, email, and message so Saman can respond. Please do not include passwords or confidential data.</p>
-    <button className="primary-button" type="submit" disabled={state === "sending"}>{state === "sending" ? "Sending…" : "Send a message"}<span aria-hidden="true">↗</span></button>
+    <button className="primary-button" type="submit" disabled={state === "sending"}>{state === "sending" ? "Sending…" : "Send a message"}<FiArrowUpRight aria-hidden="true" /></button>
     <p className={`form-status ${state}`} role="status" aria-live="polite">{message}</p>
   </form>;
 }

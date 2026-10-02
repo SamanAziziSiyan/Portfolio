@@ -4,35 +4,53 @@ import { useEffect } from "react";
 
 export function MotionController() {
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let reveal: IntersectionObserver | undefined;
-    if (!reduceMotion) {
-      document.documentElement.classList.add("motion-ready");
-      const nodes = document.querySelectorAll<HTMLElement>(".reveal");
-      reveal = new IntersectionObserver((entries, observer) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      }, { threshold: 0.12, rootMargin: "0px 0px -30px 0px" });
-      nodes.forEach((node) => reveal?.observe(node));
-    }
-
-    const sections = document.querySelectorAll<HTMLElement>("main section[id]");
-    const links = document.querySelectorAll<HTMLAnchorElement>(".section-nav a[href^='#']");
-    const active = new IntersectionObserver((entries) => {
+    const sections = document.querySelectorAll<HTMLElement>(".portfolio section[id]");
+    const links = document.querySelectorAll<HTMLAnchorElement>(".section-nav a");
+    const sectionObserver = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         links.forEach((link) => {
-          const current = link.hash === `#${entry.target.id}`;
-          if (current) link.setAttribute("aria-current", "location");
+          if (link.hash === `#${entry.target.id}`) link.setAttribute("aria-current", "location");
           else link.removeAttribute("aria-current");
         });
       }
-    }, { rootMargin: "-20% 0px -65% 0px" });
-    sections.forEach((section) => active.observe(section));
-    return () => { reveal?.disconnect(); active.disconnect(); document.documentElement.classList.remove("motion-ready"); };
+    }, { rootMargin: "-18% 0px -67% 0px" });
+    sections.forEach((section) => sectionObserver.observe(section));
+
+    const timeline = document.querySelector<HTMLElement>(".timeline");
+    const track = timeline?.querySelector<HTMLElement>(".timeline-track");
+    const entries = [...(timeline?.querySelectorAll<HTMLElement>(".timeline-entry") ?? [])];
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (!timeline || !track) return;
+      const target = window.innerHeight * .48;
+      const trackRect = track.getBoundingClientRect();
+      const fraction = Math.max(0, Math.min(1, (target - trackRect.top) / trackRect.height));
+      timeline.style.setProperty("--timeline-progress", `${(fraction * 100).toFixed(2)}%`);
+      let nearest = -1;
+      let distance = Infinity;
+      entries.forEach((entry, index) => {
+        const rect = entry.getBoundingClientRect();
+        const center = rect.top + Math.min(rect.height / 2, 85);
+        entry.classList.toggle("is-visited", center < target);
+        if (rect.bottom > 90 && rect.top < window.innerHeight - 80 && Math.abs(center - target) < distance) {
+          nearest = index;
+          distance = Math.abs(center - target);
+        }
+      });
+      entries.forEach((entry, index) => entry.classList.toggle("is-active", index === nearest));
+    };
+    const schedule = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      sectionObserver.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
   return null;
 }
