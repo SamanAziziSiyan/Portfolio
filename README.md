@@ -82,7 +82,7 @@ Never commit `.env`, contact data, credentials or production keys. Root and appl
 
 ## Deployment
 
-`main` is the intended production branch of [SamanAziziSiyan/portfolio](https://github.com/SamanAziziSiyan/portfolio). GitHub Actions validates both stacks and builds production images on each push to `main`. Until a server and domain are configured, it reports deployment as pending. `docker-compose.prod.yml` separates the production stack from the local Compose file; host Nginx terminates HTTPS and forwards traffic to loopback-only Next.js and API ports. The production SQLite database persists in its own named volume. See [server setup, required GitHub secrets, health checks, and rollback](docs/deployment.md).
+`main` is the intended production branch of [SamanAziziSiyan/Portfolio](https://github.com/SamanAziziSiyan/Portfolio). GitHub Actions validates both stacks and builds production images on each push to `main`. Until a server and domain are configured, it reports deployment as pending. `docker-compose.prod.yml` separates the production stack from the local Compose file; host Nginx terminates HTTPS and forwards traffic to loopback-only Next.js and API ports. The production SQLite database persists in its own named volume. See [server setup, required GitHub secrets, health checks, and rollback](docs/deployment.md).
 
 SQLite is intentionally suited to a single-instance, read-heavy portfolio. For multiple API replicas or materially higher write volume, migrate to PostgreSQL before scaling.
 

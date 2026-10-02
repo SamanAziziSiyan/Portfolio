@@ -19,7 +19,7 @@ These commands assume `/srv/portfolio`, user `deploy`, default loopback ports 30
    ```bash
    sudo mkdir -p /srv/portfolio
    sudo chown deploy:deploy /srv/portfolio
-   git clone https://github.com/SamanAziziSiyan/portfolio.git /srv/portfolio
+   git clone https://github.com/SamanAziziSiyan/Portfolio.git /srv/portfolio
    cd /srv/portfolio
    ```
 
@@ -52,7 +52,7 @@ These commands assume `/srv/portfolio`, user `deploy`, default loopback ports 30
 
 ## GitHub configuration
 
-In `SamanAziziSiyan/portfolio` → Settings → Secrets and variables → Actions, set these **secrets**:
+In `SamanAziziSiyan/Portfolio` → Settings → Secrets and variables → Actions, set these **secrets**:
 
 | Secret | Purpose |
 | --- | --- |
