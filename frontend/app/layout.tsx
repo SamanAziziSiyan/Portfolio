@@ -9,8 +9,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const title = locale === "fa" ? "سامان عزیزی سیان — مهندس فول‌استک" : "Saman Azizi Siyan — Full Stack Engineer";
   const description = locale === "fa"
-    ? "نمونه‌کارهای مهندسی وب سامان عزیزی سیان؛ تجربه در وردپرس، PHP، لاراول، React و Next.js."
-    : "Engineering across PHP, WordPress, Laravel, JavaScript, TypeScript, React, and Next.js. Explore public source, professional work, and the systems connecting them.";
+    ? "سامان عزیزی سیان، مهندس فول‌استک با بیش از ۱۰ سال تجربه در ساخت محصولات وب، یکپارچه‌سازی‌ها و ابزارهای توسعه."
+    : "Saman Azizi Siyan is a Full Stack Engineer with 10+ years of experience building web products, integrations, and developer tools.";
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
     title: { default: title, template: locale === "fa" ? "%s — سامان عزیزی سیان" : "%s — Saman Azizi Siyan" },

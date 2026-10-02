@@ -8,7 +8,7 @@
       "category": "WordPress",
       "evidence_type": "Professional work",
       "visibility": "Commercial theme; source proprietary",
-      "summary": "A commercial WordPress theme for course-focused websites.",
+      "summary": "A commercial WordPress theme for online education, with course-led layouts and flexible site settings.",
       "problem": "Education publishers needed a flexible, course-led site experience.",
       "contribution": "Independently developed the theme from architecture and Figma implementation through WordPress functionality and configuration.",
       "architecture": "WordPress theme with custom settings, frontend components, and course presentation.",
@@ -40,7 +40,7 @@
       "category": "WordPress",
       "evidence_type": "Professional work",
       "visibility": "Commercial theme; source proprietary",
-      "summary": "A corporate theme with configurable content, commerce, and account experiences.",
+      "summary": "A commercial WordPress theme for company sites, projects, commerce, and customer accounts.",
       "problem": "Business sites needed flexible project and product presentation within WordPress.",
       "contribution": "Independently developed the theme architecture, frontend, settings, Elementor and WooCommerce functionality, and account flows.",
       "architecture": "WordPress theme with custom project content, filtering, Elementor widgets, WooCommerce integration, and settings.",
@@ -73,7 +73,7 @@
       "category": "Full stack",
       "evidence_type": "Public source",
       "visibility": "Sanitized public subsystem",
-      "summary": "A Laravel API and Next.js editor for composing, previewing, and persisting landing pages.",
+      "summary": "A landing-page builder with a Laravel API and a Next.js editor for composing and previewing pages.",
       "problem": "Landing layouts needed a reusable content model and an editing surface rather than one-off pages.",
       "contribution": "Implemented the Laravel landing and component API, with shared frontend and development tooling work. The full generation and deployment platform lives elsewhere.",
       "architecture": "Laravel JSON endpoints persist landing configuration; a Next.js editor assembles component state and previews it in React.",
@@ -113,7 +113,7 @@
       "category": "WordPress",
       "evidence_type": "Public source",
       "visibility": "Sanitized public theme",
-      "summary": "A custom jewelry theme with a content model, account interactions, catalog views, and appointments.",
+      "summary": "A custom jewelry storefront with catalog, account, wishlist, and appointment flows.",
       "problem": "A content-led jewelry site needed tailored product storytelling and customer interaction beyond a stock theme.",
       "contribution": "Led theme architecture and substantial implementation across content modeling, settings, AJAX account flows, wishlist, and frontend behavior; collaborated with Solaiman Naderi.",
       "architecture": "WordPress custom post type and taxonomies, metadata and settings, PHP templates, AJAX endpoints, and an appointment table.",
@@ -147,7 +147,7 @@
       "category": "Integration",
       "evidence_type": "Public source",
       "visibility": "Sanitized public plugin",
-      "summary": "Catalog mapping from an external service into WooCommerce products and categories.",
+      "summary": "A WooCommerce integration that turns Anar360 catalog data into products and categories.",
       "problem": "Commerce data from a separate catalog had to become maintainable WordPress product records.",
       "contribution": "Built substantial parts of the API retrieval, category and attribute mapping, and WordPress/WooCommerce product update workflow with collaborators.",
       "architecture": "A WordPress plugin uses service API responses, admin settings, WooCommerce objects, and product metadata to map catalog entities.",
@@ -179,7 +179,7 @@
       "category": "WordPress",
       "evidence_type": "Public source",
       "visibility": "Sanitized public theme",
-      "summary": "A studio theme for project, editorial, and contact content with reusable WordPress templates.",
+      "summary": "A WordPress theme for publishing studio projects, articles, and contact content.",
       "problem": "The studio needed a flexible publishing surface for work and editorial content.",
       "contribution": "Implemented the majority of the audited theme repository, including PHP templates, project content structure, and contact functionality, with design and collaborator credit kept separate.",
       "architecture": "Custom post type and taxonomy, template parts, meta boxes, contact handling, and optional Polylang integration.",
@@ -211,7 +211,7 @@
       "category": "WordPress",
       "evidence_type": "Public source",
       "visibility": "Sanitized public theme",
-      "summary": "A custom marketing theme with responsive sections and a contact request workflow.",
+      "summary": "A custom WordPress site with responsive marketing pages and contact requests.",
       "problem": "A service site needed a cohesive marketing frontend and a manageable lead workflow.",
       "contribution": "Principal contributor to the available WordPress history; developed the theme and local development tooling alongside collaborators.",
       "architecture": "WordPress PHP templates and hooks, Tailwind frontend, AJAX contact handler, and an administrator request view.",
@@ -244,7 +244,7 @@
       "category": "Tooling",
       "evidence_type": "Public source",
       "visibility": "Sanitized public CLI",
-      "summary": "A PHP command-line tool for WordPress setup and code-generation routines.",
+      "summary": "A PHP command-line tool that speeds up WordPress setup and repetitive code generation.",
       "problem": "Repeated theme setup and custom content boilerplate slowed project starts.",
       "contribution": "Implemented folder, Git, and WordPress service routines and custom post type/taxonomy generation in a collaborative CLI.",
       "architecture": "Composer-based PHP commands invoke focused services for filesystem work, template cloning, and generated WordPress code.",
@@ -276,7 +276,7 @@
       "category": "Frontend",
       "evidence_type": "Historical project",
       "visibility": "Public historical repository; rights review open",
-      "summary": "A Next.js client that coordinates customer, product, order, and wallet flows across two API boundaries.",
+      "summary": "A Next.js customer app for products, orders, accounts, and wallets across two APIs.",
       "problem": "The customer experience needed a responsive application over existing WordPress and another service API.",
       "contribution": "Substantial work in the public Next.js/TypeScript client. The repository does not establish authorship of the backend services.",
       "architecture": "Next.js app routes, feature components, Zustand state, and separate Axios clients for WordPress and another API host.",
@@ -309,7 +309,7 @@
       "category": "Frontend",
       "evidence_type": "Historical project",
       "visibility": "Public historical repository; backend security review open",
-      "summary": "A React administrative interface connected to a separate WordPress API plugin.",
+      "summary": "A React interface for real-estate management, connected to a separate WordPress API.",
       "problem": "Property administration needed forms and API-backed management views.",
       "contribution": "Shared frontend implementation in the available React repository. Exact contract placement and the broader Next.js work are not established by this source.",
       "architecture": "React UI modules, form validation, routing, and an Axios service boundary to a WordPress API.",
@@ -344,12 +344,11 @@
       "location": "Greater Vancouver, Canada",
       "employment_type": "Full-time",
       "workplace_type": "Remote",
-      "summary": "Building and maintaining Listdom, a commercial WordPress directory platform and its add-ons, themes, integrations, and developer tools.",
+      "summary": "Building Listdom's core, add-ons, themes, integrations, and developer tools within Webilia's commercial WordPress ecosystem.",
       "highlights": [
-        "Owner-reported 600+ PRs across the ecosystem; approximately 400 in core and 200+ in related work.",
-        "Designed and implemented Template Builder, Demo Importer and Settings Panel packages, and Placora theme.",
-        "Built the Divi 5 integration; developed and maintained 30+ add-ons.",
-        "Reviews, production debugging, technical decisions, and UI/UX coordination. Payment work built on the manager’s core architecture."
+        "Authored 600+ pull requests across Listdom: roughly 400 in core and 200+ in related products.",
+        "Designed and built Template Builder, Demo Importer, Settings Panel, and the Placora theme.",
+        "Built the Divi 5 integration and maintained 30+ add-ons, alongside reviews, production debugging, and UI/UX work."
       ],
       "technologies": [
         "PHP",
@@ -369,10 +368,10 @@
       "location": "Shahr-e Kord, Iran",
       "employment_type": "Contract",
       "workplace_type": "Remote",
-      "summary": "Independently developed two commercial themes: Blogina for education sites and Serione for corporate sites.",
+      "summary": "Independently built Blogina and Serione, commercial WordPress themes for education and company websites.",
       "highlights": [
-        "Blogina: Figma to WordPress production, theme architecture, settings, and course-focused views.",
-        "Serione: settings infrastructure, Elementor and WooCommerce functionality, project content, AJAX filtering, and account areas."
+        "Blogina: turned Figma designs into an education theme with its own architecture, settings, and course templates.",
+        "Serione: built project content, Elementor widgets, WooCommerce features, AJAX filtering, and account flows."
       ],
       "technologies": [
         "WordPress",
@@ -414,10 +413,10 @@
       "location": "Shiraz, Iran",
       "employment_type": "Full-time",
       "workplace_type": "Remote",
-      "summary": "Worked on the customer website and user panel, connecting a Next.js frontend to WordPress and another service API.",
+      "summary": "Built customer-facing pages and account flows in Next.js, connecting WordPress and a separate .NET-backed service.",
       "highlights": [
-        "Built customer-facing product, order, and account flows in Next.js.",
-        "Worked inside existing WordPress code and maintained a custom theme; the public PWA repositories show the frontend boundary."
+        "Built product, order, and account experiences in Next.js using WordPress and .NET APIs.",
+        "Maintained a custom WordPress theme and fixed 50+ issues across the projects."
       ],
       "technologies": [
         "Next.js",
@@ -437,11 +436,11 @@
       "location": "Iran",
       "employment_type": "Full-time",
       "workplace_type": "Remote",
-      "summary": "Moved from hands-on product development into technical leadership while continuing to contribute to delivery.",
+      "summary": "Led a team of 5+ developers while staying hands-on with architecture, code review, mentoring, planning, and delivery.",
       "highlights": [
         "Led 5+ developers through planning, code review, architecture decisions, mentoring, and debugging.",
-        "Led continued ClickChin development after its initial hands-on phase and contributed to TechTeamBuilder.",
-        "Participated in technical and HR interviews for developer roles."
+        "Coordinated ClickChin delivery and contributed to TechTeamBuilder while remaining hands-on.",
+        "Joined technical and HR interviews for developer hiring."
       ],
       "technologies": [
         "Laravel",
@@ -460,11 +459,11 @@
       "location": "Iran",
       "employment_type": "Full-time",
       "workplace_type": "Remote",
-      "summary": "Developed Panjere products across Laravel and Next.js applications, WordPress sites, commerce integrations, and PHP tooling.",
+      "summary": "Built parts of Panjere's Laravel and Next.js applications, WordPress sites, commerce integrations, and PHP developer tools.",
       "highlights": [
-        "Built initial ClickChin component and template flows, including JSON configuration and generated output paths.",
+        "Built early ClickChin component and template flows with Laravel and Next.js.",
         "Developed the Studio theme, miniCli, and Anar360 WooCommerce integration.",
-        "Worked on Laboratory and deployment workflows; broader platform claims remain bounded by the audited source."
+        "Worked on Laboratory and deployment workflows."
       ],
       "technologies": [
         "Laravel",
@@ -485,10 +484,10 @@
       "location": "Gorgan, Iran",
       "employment_type": "Contract",
       "workplace_type": "Remote",
-      "summary": "Delivered and maintained business WordPress sites for international clients, often adapting commercial themes to specific needs.",
+      "summary": "Built and maintained 10+ WordPress websites for international clients, adapting commercial themes and integrating business workflows.",
       "highlights": [
-        "Owner reports 10+ sites; work covered frontend, backend, database, integrations, and deployment.",
-        "Developed AKAF and AKAF Business sites; no public repository is assigned to this role."
+        "Built and maintained 10+ client sites across frontend, backend, data, integrations, and deployment.",
+        "Developed AKAF and AKAF Business websites."
       ],
       "technologies": [
         "WordPress",
@@ -507,10 +506,10 @@
       "location": "Tehran Province, Iran",
       "employment_type": "Full-time",
       "workplace_type": "Remote",
-      "summary": "Customized an existing WooCommerce automotive store, then designed and coded much of a replacement theme before leaving.",
+      "summary": "Improved a WooCommerce automotive storefront and designed and implemented much of its replacement theme before leaving.",
       "highlights": [
-        "Built product discovery and filtering and redesigned storefront sections.",
-        "Worked with sales and marketing as the primary developer. No unverified launch or performance figure is claimed."
+        "Improved product search and filtering and redesigned storefront sections.",
+        "Worked with sales and marketing, then designed and implemented much of a replacement theme."
       ],
       "technologies": [
         "WordPress",
@@ -529,10 +528,10 @@
       "location": "Iran",
       "employment_type": "Freelance",
       "workplace_type": "Hybrid",
-      "summary": "Delivered independent web projects from requirements through deployment and maintenance, alongside other periods of work.",
+      "summary": "Took 20+ independent web projects from requirements to launch and maintenance, often alongside other roles.",
       "highlights": [
-        "Owner reports 20+ projects spanning WordPress and custom PHP/Laravel applications.",
-        "Managed hosting, domains, server setup, and client maintenance."
+        "Delivered 20+ WordPress and custom PHP/Laravel projects.",
+        "Handled requirements, hosting, domains, deployment, and maintenance."
       ],
       "technologies": [
         "PHP",
